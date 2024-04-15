@@ -82,3 +82,18 @@ let orders = [
 ];
 
 // Start coding here
+
+function calculateOrderOfBirdieShepland(orders) {
+  let sum = 0;
+  let temp = 0;
+  for(let item of orders) {
+    if(item.customerName === "Birdie Shepland") {
+      temp = item.productPrice * item.productQuantity;
+      sum = sum + temp;
+    }
+  }
+  return sum;
+}
+
+let result = calculateOrderOfBirdieShepland(orders);
+console.log("Total paid amount of Birdie Shepland: " + result +" Baht");

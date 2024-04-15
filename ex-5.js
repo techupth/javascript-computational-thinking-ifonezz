@@ -82,3 +82,40 @@ let orders = [
 ];
 
 // Start coding here
+function checkTotalAmountOfOrders(orders) {
+  let result = {
+    id:0,
+    price:""
+  };
+  let temp = 0;
+  for(let i = 0; i < orders.length; i++) {
+    if(i == 0) {
+      let sumTotalProductId1 = calculateTotalPrice(orders[0].productPrice,orders[0].productQuantity);
+      let sumTotalProductId2 = calculateTotalPrice(orders[1].productPrice,orders[1].productQuantity);
+      if(sumTotalProductId1 > sumTotalProductId2){
+        temp = sumTotalProductId1;
+        result.id = orders[0].id;
+        result.price = sumTotalProductId1;
+      } else {
+        temp = sumTotalProductId2;
+        result.id = orders[1].id;
+        result.price = sumTotalProductId1;
+      }
+    } else {
+      let sumTotalProductIdX = calculateTotalPrice(orders[i].productPrice,orders[i].productQuantity);
+      if(temp < sumTotalProductIdX) {
+        temp = sumTotalProductIdX;
+        result.id = orders[i].id;
+        result.price = sumTotalProductIdX;
+      }
+    }
+  }
+  return result;
+}
+
+function calculateTotalPrice(price,quantity){
+  return price*quantity;
+}
+
+let result = checkTotalAmountOfOrders(orders);
+console.log("The most expensive order is order id "+ result.id + " ("+result.price+") Baht" );
