@@ -82,3 +82,27 @@ let orders = [
 ];
 
 // Start coding here
+function checkTheMostExpensiveProductInOrder(orders) {
+  let productNameResult = "";
+  let temp = 0;
+  for(let i = 0; i < orders.length; i++) {
+    if(i == 0) {
+      if(orders[0].productPrice > orders[1].productPrice){
+        temp = orders[0].productPrice;
+        productNameResult = orders[0].productName;
+      } else {
+        temp = orders[1].productPrice;
+        productNameResult = orders[1].productName;
+      }
+    } else {
+      if(temp < orders[i].productPrice) {
+        temp = orders[i].productPrice;
+        productNameResult = orders[i].productName;
+      }
+    }
+  }
+  return productNameResult;
+}
+
+let result = checkTheMostExpensiveProductInOrder(orders);
+console.log("The most expensive product in orders: "+ result);
